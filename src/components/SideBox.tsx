@@ -1,8 +1,10 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useBaseStore } from '../store/baseStore';
 
 const SideBox: React.FC = () => {
-  const [categories, setCategories] = useState<string[]>([]);
+  const categories = useBaseStore((state) => state.categories);
+
+  console.log(categories);
   const navigate = useNavigate();
   function navigateToCreateCategory() {
     return navigate('/createCategory');
@@ -21,6 +23,13 @@ const SideBox: React.FC = () => {
         <button className="text-white bg-later h-[31px] w-[180px] rounded-lg text-center">
           Later
         </button>
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            className="text-white bg-darkGreen h-[31px] w-[180px] rounded-lg text-center">
+            {category.name}
+          </button>
+        ))}
         <button
           className="absolute bottom-0 mb-4 bg-darkGreen text-addBtnColor h-[31px] w-[166px] text-center font-bold rounded-lg"
           onClick={navigateToCreateCategory}>
