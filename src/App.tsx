@@ -12,6 +12,7 @@ type Task = {
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   function handleAddTask() {
     setTasks([...tasks, { id: uuidv4(), isChecked: false }]);
@@ -43,11 +44,19 @@ const App: React.FC = () => {
           <div>TASK MANAGER</div>
         </h1>
         <div className="h-screen flex items-center">
-          <SideBox />
+          <SideBox categories={categories} />
         </div>
         <Routes>
           <Route path="/" />
-          <Route path="/createCategory" element={<CreateCategory />} />
+          <Route
+            path="/createCategory"
+            element={
+              <CreateCategory
+                categories={categories}
+                handleAddCategory={() => setCategories}
+              />
+            }
+          />
         </Routes>
       </div>
     </Router>

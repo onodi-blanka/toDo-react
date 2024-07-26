@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useBaseStore } from '../store/baseStore';
+import { v4 as uuidv4 } from 'uuid';
 
 const CreateCategory: React.FC = () => {
   const [categoryInput, setCategoryInput] = useState<string>('');
   const navigate = useNavigate();
+  const addNewCategory = useBaseStore((state) => state.addCategory);
 
-  function sendingCategoryInput() {
+  function sendNewCategoryInput() {
     console.log(categoryInput);
-    return categoryInput;
+
+    addNewCategory({
+      id: uuidv4(),
+      name: categoryInput,
+    });
   }
 
   function updateInput(categoryInput: string) {
@@ -38,7 +45,7 @@ const CreateCategory: React.FC = () => {
           <button
             type="submit"
             className="border border-darkGreen bg-addBtnColor text-darkGreen rounded-lg  pl-8 pr-8"
-            onClick={sendingCategoryInput}>
+            onClick={sendNewCategoryInput}>
             Create Category
           </button>
           <button
