@@ -11,35 +11,12 @@ type Task = {
 };
 
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
-
-  function handleAddTask() {
-    setTasks([...tasks, { id: uuidv4(), isChecked: false }]);
-  }
-
-  function handleDelete(id: string) {
-    setTasks(tasks.filter((task) => task.id !== id));
-  }
-
-  function handleCheckBox(id: string) {
-    const foundTask = tasks.find((task) => task.id === id);
-    const filteredTasks = tasks.filter((task) => task.id !== id);
-    if (!foundTask) {
-      return;
-    }
-
-    console.log(filteredTasks);
-    setTasks([
-      ...filteredTasks,
-      { ...foundTask, isChecked: !foundTask?.isChecked },
-    ]);
-  }
 
   return (
     <Router>
-      <div className="flex flex-col h-screen bg-beige items-center">
-        <h1 className="text-3xl text-darkBeige font-bold text-center pt-4">
+      <div className="flex flex-col h-screen bg-custom-beige items-center">
+        <h1 className="text-3xl text-custom-darkBeige font-bold text-center pt-4">
           PERSONAL
           <div>TASK MANAGER</div>
         </h1>
