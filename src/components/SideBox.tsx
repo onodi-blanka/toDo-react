@@ -11,9 +11,9 @@ const SideBox: React.FC = () => {
   }
 
   return (
-    <div className="relative flex flex-col gap-8 w-60 h-[425px] bg-green items-center rounded-lg">
+    <div className="relative flex flex-col gap-8 w-60 h-[425px] bg-lightGreen  items-center rounded-lg overflow-auto">
       <div className="text-white text-[20px] text-center">Categories</div>
-      <div className="flex flex-col gap-2 items-center">
+      <div className="flex mb-auto  flex-col gap-2 items-center overflow-y-auto">
         <button className="text-white bg-completed h-[31px] w-[180px] rounded-lg text-center">
           Completed
         </button>
@@ -23,19 +23,24 @@ const SideBox: React.FC = () => {
         <button className="text-white bg-later h-[31px] w-[180px] rounded-lg text-center">
           Later
         </button>
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            className="text-white bg-darkGreen h-[31px] w-[180px] rounded-lg text-center">
-            {category.name}
-          </button>
-        ))}
-        <button
-          className="absolute bottom-0 mb-4 bg-darkGreen text-addBtnColor h-[31px] w-[166px] text-center font-bold rounded-lg"
-          onClick={navigateToCreateCategory}>
-          Add category
-        </button>
+        {categories.map(
+          (category) => (
+            console.log(category.colour),
+            (
+              <button
+                key={category.id}
+                className={`text-white bg-${category.colour || 'darkGreen'} h-[31px] w-[180px] rounded-lg text-center`}>
+                {category.name}
+              </button>
+            )
+          ),
+        )}
       </div>
+      <button
+        className="bg-darkGreen mb-4 text-addBtnColor h-[31px] justify-self-end w-[166px] text-center font-bold rounded-lg"
+        onClick={navigateToCreateCategory}>
+        Add category
+      </button>
     </div>
   );
 };
