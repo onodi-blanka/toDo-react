@@ -46,10 +46,6 @@ const CreateCategory: React.FC<CategoryModalProps> = ({ isOpen, onClose }) => {
     setCategoryInput(categoryInput);
   }
 
-  function navigateBackToHomeScreen() {
-    return navigate('/');
-  }
-
   function handleCategoryColourChange(e: any) {
     updateCategoryColour(e.target.value);
   }
@@ -66,6 +62,7 @@ const CreateCategory: React.FC<CategoryModalProps> = ({ isOpen, onClose }) => {
           </label>
           <input
             type="text"
+            minLength={2}
             className="border border-custom-darkGreen text-center text-custom-darkGreen border-custom-darkGreen rounded-lg w-[300px] h-[25px]"
             onChange={(event) => updateInput(event.target.value)}></input>
         </span>
