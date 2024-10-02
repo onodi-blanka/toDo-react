@@ -69,6 +69,9 @@ module.exports = {
           orange: '#FF5722',
           purple: '#673AB7',
           green: '#008000',
+          topBarGreen: '#1D8A8A',
+          topBarWhite: '#F6F6F6',
+          ListElementColour: '#44A0A0',
         },
       },
       borderRadius: {
